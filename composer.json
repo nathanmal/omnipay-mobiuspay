@@ -4,7 +4,7 @@
     "description": "Mobiuspay gateway for the Omnipay PHP payment processing library",
     "keywords": [
         "mobiuspay",
-        "mobius pay,"
+        "mobius pay,",
         "mobiuspay.com",
         "gateway",
         "merchant",

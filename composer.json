@@ -1,5 +1,5 @@
 {
-    "name": "nathanmal/mobiuspay",
+    "name": "nathanmal/omnipay-mobiuspay",
     "type": "library",
     "description": "Mobiuspay gateway for the Omnipay PHP payment processing library",
     "keywords": [

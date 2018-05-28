@@ -31,6 +31,11 @@
         "squizlabs/php_codesniffer": "^3",
         "phpro/grumphp": "^0.14"
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    },
     "scripts": {
         "test": "phpunit",
         "check-style": "phpcs -p --standard=PSR2 src/",

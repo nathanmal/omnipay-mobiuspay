@@ -30,8 +30,6 @@ class PurchaseRequest extends AbstractRequest
         'amount',
         'card'
       );
-
-      return parent::getData();
    }
 
 

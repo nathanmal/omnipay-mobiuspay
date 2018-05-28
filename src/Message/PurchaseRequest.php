@@ -22,7 +22,36 @@ use Guzzle\Http\Exception\BadResponseException;
 class PurchaseRequest extends AbstractRequest
 {
 
-    
+   protected $transactURL = 'https://secure.mobiusgateway.com/api/transact.php';
+
+   public function getData()
+   {
+      $this->validate(
+        'response',
+        'responsetext',
+        'authcode',
+        'transactionid',
+        'avsresponse',
+        'cvvresponse',
+        'orderid',
+        'response_code'
+      );
+   }
+
+
+   public function sendData( $data )
+   {
+
+      try {
+        $response = $this->httpClient->post($this->transactURL, array(), $data)->send();
+      } catch ( BadResponseException $e ) {
+        $response = $e->getResponse();
+      }
+
+      return new PurchaseResponse($this, $response);
+
+
+   }
 
 
 }

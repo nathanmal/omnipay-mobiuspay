@@ -27,15 +27,11 @@ class PurchaseRequest extends AbstractRequest
    public function getData()
    {
       $this->validate(
-        'response',
-        'responsetext',
-        'authcode',
-        'transactionid',
-        'avsresponse',
-        'cvvresponse',
-        'orderid',
-        'response_code'
+        'amount',
+        'card'
       );
+
+      return parent::getData();
    }
 
 

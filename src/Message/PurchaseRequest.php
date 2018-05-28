@@ -43,7 +43,9 @@ class PurchaseRequest extends AbstractRequest
       print_r($methods);
       exit(0);
 */
+      var_dump($data);
 
+      
       try {
 
         $method  = 'POST';

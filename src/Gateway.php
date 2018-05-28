@@ -9,7 +9,6 @@
  *
  * valid types: 'sale', 'auth', 'credit', or 'validate'
  * 
- * 
  */
 namespace Omnipay\Mobiuspay;
 
@@ -99,7 +98,7 @@ class Gateway extends AbstractGateway
      */
     public function purchase( array $parameters = array() )
     {
-      return $this->createRequest('\Omnipay\Mobiuspay\Message\PurchaseRequest', $parameters)
+      return $this->createRequest('\Omnipay\Mobiuspay\Message\PurchaseRequest', $parameters);
     }
 
 

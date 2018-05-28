@@ -1,0 +1,40 @@
+{
+    "name": "nathanmal/mobiuspay",
+    "type": "library",
+    "description": "Mobiuspay gateway for the Omnipay PHP payment processing library",
+    "keywords": [
+        "mobiuspay",
+        "mobius pay,"
+        "mobiuspay.com",
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment"
+    ],
+    "homepage": "https://github.com/nathanmal/omnipay-mobuspay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nathan Malachowski",
+            "email": "nathanmal@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\Mobiuspay\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "^3"
+    },
+    "require-dev": {
+        "omnipay/tests": "^3",
+        "squizlabs/php_codesniffer": "^3",
+        "phpro/grumphp": "^0.14"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 src/",
+        "fix-style": "phpcbf -p --standard=PSR2 src/"
+    },
+    "prefer-stable": true
+}

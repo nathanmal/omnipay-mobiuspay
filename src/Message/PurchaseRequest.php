@@ -33,10 +33,15 @@ class PurchaseRequest extends AbstractRequest
    }
 
 
-   public function sendData( $data )
+  public function sendData( $data )
    {
       var_dump($this->httpClient);
-      
+
+      $class = get_class($this->httpClient);
+      echo 'methods for ' . $class . PHP_EOL;
+      $methods = get_class_methods($class);
+      print_r($methods);
+      exit(0);
       try {
         $response = $this->httpClient->post($this->transactURL, array(), $data)->send();
       } catch ( BadResponseException $e ) {

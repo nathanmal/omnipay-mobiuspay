@@ -35,7 +35,8 @@ class PurchaseRequest extends AbstractRequest
 
    public function sendData( $data )
    {
-
+      var_dump($this->httpClient);
+      
       try {
         $response = $this->httpClient->post($this->transactURL, array(), $data)->send();
       } catch ( BadResponseException $e ) {

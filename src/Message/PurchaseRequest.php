@@ -24,14 +24,19 @@ class PurchaseRequest extends AbstractRequest
 
    protected $transactURL = 'https://secure.mobiusgateway.com/api/transact.php';
 
-   public function getData()
+   /*public function getData()
    {
       $this->validate(
         'amount',
         'card'
       );
-   }
 
+      return array( 
+          
+      )
+
+   }
+*/
 
   public function sendData( $data )
    {
@@ -45,7 +50,7 @@ class PurchaseRequest extends AbstractRequest
 */
       var_dump($data);
 
-      
+
       try {
 
         $method  = 'POST';

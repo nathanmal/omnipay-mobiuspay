@@ -1,5 +1,16 @@
 <?php 
 
+/**
+ * MobiusPay Driver for Omnipay PHP payment processing library
+ * https://mobiuspay.com/
+ *
+ * Latest driver release:
+ * https://github.com/nathanmal/omnipay-mobiuspay
+ *
+ * valid types: 'sale', 'auth', 'credit', or 'validate'
+ * 
+ * 
+ */
 namespace Omnipay\Mobiuspay;
 
 use Omnipay\Common\AbstractGateway;
@@ -20,19 +31,76 @@ class Gateway extends AbstractGateway
       return 'MobiusPay';
     }
 
-
-
+    /**
+     * {@inheritdoc}
+     */
     public function getDefaultParameters()
     {
       return array(
-        'accountNumber' => '',
+        'type' => '',
         'username' => 'demo',
         'password' => 'password',
-        'testMode' => TRUE,
-        'endpoint' => 'https://secure.mobiusgateway.com/api/transact.php',
       );
     }
 
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+      return $this->getParameter( 'type' );
+    }
+
+    /**
+     * @param string $value transaction type
+     */
+    public function setType( $value )
+    {
+      return $this->setParameter( 'type', $value );
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+      return $this->getParameter( 'username' );
+    }
+
+    /**
+     * @param string $value account username
+     */
+    public function setUsername( $value )
+    {
+      return $this->setParameter( 'username', $value );
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+      return $this->getParameter( 'password' );
+    }
+
+    /**
+     * @param string $value account password
+     * @return $this
+     */
+    public function setPassword( $value )
+    {
+      return $this->setParameter( 'password', $value );
+    }
+
+    /**
+     * Send purchase request 
+     * @param  array  $parameters array of options
+     * @return \Omnipay\Mobiuspay\Message\PurchaseRequest
+     */
+    public function purchase( array $parameters = array() )
+    {
+      return $this->createRequest('\Omnipay\Mobiuspay\Message\PurchaseRequest', $parameters)
+    }
 
 
 

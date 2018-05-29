@@ -36,9 +36,11 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
       return array(
-        'type' => '',
-        'username' => 'demo',
-        'password' => 'password',
+        'postUri'  => 'https://secure.mobiusgateway.com/api/transact.php',
+        'queryUri' => 'https://secure.mobiusgateway.com/api/query.php'
+        'type'     => '',
+        'username' => '',
+        'password' => '',
       );
     }
 
@@ -89,6 +91,40 @@ class Gateway extends AbstractGateway
     public function setPassword( $value )
     {
       return $this->setParameter( 'password', $value );
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostUri()
+    {
+      return $this->getParameter( 'postUri' );
+    }
+
+    /**
+     * @param string $value account password
+     * @return $this
+     */
+    public function setPostUri( $value )
+    {
+      return $this->setParameter( 'postUri', $value );
+    }
+
+    /**
+     * @return string
+     */
+    public function getQueryUri()
+    {
+      return $this->getParameter( 'queryUri' );
+    }
+
+    /**
+     * @param string $value account password
+     * @return $this
+     */
+    public function setQueryUri( $value )
+    {
+      return $this->setParameter( 'queryUri', $value );
     }
 
     /**

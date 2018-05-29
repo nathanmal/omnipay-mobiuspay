@@ -13,7 +13,6 @@
 
 namespace Omnipay\Mobiuspay\Message;
 
-use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\CreditCard;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Guzzle\Http\Exception\BadResponseException;
@@ -22,18 +21,21 @@ use Guzzle\Http\Exception\BadResponseException;
 class PurchaseRequest extends AbstractRequest
 {
 
-   protected $transactURL = 'https://secure.mobiusgateway.com/api/transact.php';
+   public function getData()
+   {  
+      $this->validate('amount','card');
 
-  /* public function getData()
-   {
-      $this->validate(
-        'amount',
-        'card'
-      );
+      $data = array();
 
-      return $this->data;
+      $data['type'] = $this->getType();
 
-   }*/
+      $data['amount'] = $this->getAmount();
+
+      $data['currency'] = $this->getCurrency();
+
+      return $data;
+
+   }
 
 
   public function sendData( $data )
@@ -52,7 +54,7 @@ class PurchaseRequest extends AbstractRequest
       try {
 
         $method  = 'POST';
-        $url     = $this->transactURL;
+        $url     = $this->getPostUri();
         $data    = http_build_query($data);
         $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
 

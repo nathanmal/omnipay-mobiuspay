@@ -21,51 +21,54 @@ use Guzzle\Http\Exception\BadResponseException;
 class PurchaseRequest extends AbstractRequest
 {
 
-   public function getData()
-   {  
-      $this->validate('amount','card');
+  public function getData()
+  {  
+    $this->validate('type','amount','card');
 
-      $data = array();
+    $data = array();
 
-      $data['type'] = $this->getType();
+    $data['type']     = $this->getType();
+    $data['username'] = $this->getUsername();
+    $data['password'] = $this->getPassword();
+    $data['amount']   = $this->getAmount();
+    $data['currency'] = $this->getCurrency();
 
-      $data['amount'] = $this->getAmount();
+    $card = $this->getCard();
 
-      $data['currency'] = $this->getCurrency();
+    $card->validate();
 
-      return $data;
+    $data['ccnumber'] = $card->getNumber();
 
-   }
+    $month = (string) $card->getExpiryDate('m');
+    $year  = (string) $card->getExpiryYear('y');
+
+    if( strlen($year) == 4 ) {
+      $year = substr($year, 2);
+    }
+
+    $data['ccexp'] = $month . $year;
+
+    $cvv   = $card->getCvv();
+
+    if( ! empty($cvv) ) $data['cvv'] = $cvv;
+    
+    return $data;
+
+  }
 
 
   public function sendData( $data )
-   {
-      /*
-      var_dump($this->httpClient);
-      $class = get_class($this->httpClient);
-      echo 'methods for ' . $class . PHP_EOL;
-      $methods = get_class_methods($class);
-      print_r($methods);
-      exit(0);
-*/
-      var_dump($data);
-
-
+  {
       try {
 
-        $method  = 'POST';
-        $url     = $this->getPostUri();
-        $data    = http_build_query($data);
         $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
+        $response = $this->httpClient->request('POST', $this->getPostUri(), $headers, http_build_query($data));
 
-        $response = $this->httpClient->request($method, $url, $headers, $data);
-        // $response = $this->httpClient->post($this->transactURL, array(), $data)->send();
       } catch ( BadResponseException $e ) {
         $response = $e->getResponse();
       }
 
       return new PurchaseResponse($this, $response);
-
 
    }
 

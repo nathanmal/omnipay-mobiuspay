@@ -37,7 +37,7 @@ class Gateway extends AbstractGateway
     {
       return array(
         'postUri'  => 'https://secure.mobiusgateway.com/api/transact.php',
-        'queryUri' => 'https://secure.mobiusgateway.com/api/query.php'
+        'queryUri' => 'https://secure.mobiusgateway.com/api/query.php',
         'type'     => '',
         'username' => '',
         'password' => '',

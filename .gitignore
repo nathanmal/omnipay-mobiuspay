@@ -28,6 +28,5 @@ Temporary Items
 
 .sass-cache
 
-logs
-logs/*
-library/assets/vendor/*
+vendor/
+vendor/*

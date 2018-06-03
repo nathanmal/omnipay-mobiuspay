@@ -21,6 +21,11 @@ use Guzzle\Http\Exception\BadResponseException;
 class PurchaseRequest extends AbstractRequest
 {
 
+
+  /**
+   * Get Request Data
+   * @return array
+   */
   public function getData()
   {  
     $this->validate('type','amount','card');
@@ -56,7 +61,11 @@ class PurchaseRequest extends AbstractRequest
 
   }
 
-
+  /**
+   * Send Request Data
+   * @param  array $data 
+   * @return Omnipay\Mobiuspay\Message\PurchaseResponse
+   */
   public function sendData( $data )
   {
       try {

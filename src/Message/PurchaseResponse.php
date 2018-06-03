@@ -18,21 +18,6 @@ use Omnipay\Common\Message\RequestInterface;
 
 class PurchaseResponse extends AbstractResponse 
 { 
-
-  /**
-   * Parse Response String
-   * @param RequestInterface $request [description]
-   * @param [type]           $data    [description]
-   */
-  public function __construct( RequestInterface $request, $data )
-  {
-     $this->request = $request;
-
-     print_r($request->getConfig());
-
-     parse_str($data->getBody(), $this->data);
-  }
-
   /**
    * {@inheritdoc}
    */

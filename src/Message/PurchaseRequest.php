@@ -28,7 +28,7 @@ class PurchaseRequest extends AbstractRequest
    */
   public function getData()
   {  
-    $this->validate('type','amount','card');
+    $this->validate('type','amount','username','password','card');
 
     $data = array();
 

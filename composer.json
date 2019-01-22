@@ -24,7 +24,8 @@
         "psr-4": { "Omnipay\\Mobiuspay\\" : "src/" }
     },
     "require": {
-        "omnipay/common": "^3"
+        "omnipay/common": "^3",
+        "omnipay/omnipay": "^3.0"
     },
     "require-dev": {
         "omnipay/tests": "^3.0"

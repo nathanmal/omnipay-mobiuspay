@@ -13,7 +13,7 @@
 
 namespace Omnipay\Mobiuspay\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
+use Omnipay\Mobiuspay\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
 class PurchaseResponse extends AbstractResponse 
@@ -23,6 +23,22 @@ class PurchaseResponse extends AbstractResponse
    */
   public function isSuccessful()
   {
-    return isset($this->data['response']) && $this->data['response'] == 1;
+    $response = $this->getResponseData('response');
+
+    return intval($response) === 1;
   }
+
+
+  public function getResponseText()
+  {
+    return $this->getResponseData('responsetext');
+  }
+
+
+  public function getTransactionId()
+  {
+    return $this->getResponseData('transactionid');
+  }
+
+
 }

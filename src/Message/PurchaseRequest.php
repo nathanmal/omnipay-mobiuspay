@@ -13,14 +13,15 @@
 
 namespace Omnipay\Mobiuspay\Message;
 
+use Guzzle\Http\Exception\BadResponseException;
 use Omnipay\Common\CreditCard;
 use Omnipay\Common\Exception\InvalidRequestException;
-use Guzzle\Http\Exception\BadResponseException;
+use Omnipay\Mobiuspay\Message\AbstractRequest;
+use Omnipay\Mobiuspay\Message\PurchaseResponse;
 
 
 class PurchaseRequest extends AbstractRequest
 {
-
 
   /**
    * Get Request Data
@@ -42,8 +43,6 @@ class PurchaseRequest extends AbstractRequest
 
     $card->validate();
 
-    $data['ccnumber'] = $card->getNumber();
-
     $month = (string) $card->getExpiryDate('m');
     $year  = (string) $card->getExpiryYear('y');
 
@@ -51,12 +50,14 @@ class PurchaseRequest extends AbstractRequest
       $year = substr($year, 2);
     }
 
-    $data['ccexp'] = $month . $year;
-
-    $cvv   = $card->getCvv();
-
-    if( ! empty($cvv) ) $data['cvv'] = $cvv;
+    $data['ccnumber']  = $card->getNumber();
+    $data['ccexp']     = $month . $year;
+    $data['cvv']       = $card->getCvv();
     
+    $data['orderid']   = $this->getOrderId();
+    $data['ipaddress'] = $this->getIpaddress();
+    $data['email']     = $this->getEmail();
+
     return $data;
 
   }
@@ -71,14 +72,18 @@ class PurchaseRequest extends AbstractRequest
       try {
 
         $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
-        $response = $this->httpClient->request('POST', $this->getPostUri(), $headers, http_build_query($data));
+        $query   = http_build_query($data);
+        $uri     = $this->getPostUri();
 
-      } catch ( BadResponseException $e ) {
+        $response = $this->httpClient->request('POST', $uri, $headers, $query);
+
+      } 
+      catch ( BadResponseException $e ) 
+      {
         $response = $e->getResponse();
       }
 
       return new PurchaseResponse($this, $response);
-
    }
 
 

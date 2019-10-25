@@ -107,6 +107,61 @@ abstract class AbstractRequest extends BaseAbstractRequest
     return $this->setParameter( 'queryUri', $value );
   }
 
+  /**
+   * Get the Order ID
+   * @return [type] [description]
+   */
+  public function getOrderID()
+  {
+      return $this->getParameter( 'orderid' );
+  }
+
+  /**
+   * Set the order ID
+   * @param [type] $order_id [description]
+   */
+  public function setOrderID( $order_id )
+  {
+      return $this->setParameter( 'orderid', $order_id );
+  }
+
+  /**
+   * Get IP address
+   * @return [type] [description]
+   */
+  public function getIpaddress()
+  {
+      return $this->getParameter( 'ipaddress' );
+  }
+
+  /**
+   * Set IP address
+   * @param [type] $ip_address [description]
+   */
+  public function setIpaddress( $ip_address )
+  {
+      return $this->setParameter( 'ipaddress', $ip_address );
+  }
+
+  /**
+   * Get email
+   * @return [type] [description]
+   */
+  public function getEmail()
+  {
+      return $this->getParameter( 'email' );
+  }
+
+  /**
+   * Set email
+   * @param [type] $email [description]
+   */
+  public function setEmail( $email )
+  {
+      return $this->setParameter( 'email', $email );
+  }
+
+
 
 
 }

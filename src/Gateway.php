@@ -128,12 +128,66 @@ class Gateway extends AbstractGateway
     }
 
     /**
+     * Get order ID parameter
+     * @return [type] [description]
+     */
+    public function getOrderID()
+    {
+        return $this->getParameter( 'orderid' );
+    }
+
+    /**
+     * Set order ID parameter
+     * @param [type] $order_id [description]
+     */
+    public function setOrderID( $order_id )
+    {
+        return $this->setParameter( 'orderid', $order_id );
+    }
+
+    /**
+     * Get IP Address parameter
+     * @return [type] [description]
+     */
+    public function getIpaddress()
+    {
+        return $this->getParameter( 'ipaddress' );
+    }
+
+    /**
+     * Set IP Address parameter
+     * @param [type] $ip_address [description]
+     */
+    public function setIpaddress( $ip_address )
+    {
+        return $this->setParameter( 'ipaddress', $ip_address );
+    }
+
+    /**
+     * Get email parameter
+     * @return [type] [description]
+     */
+    public function getEmail()
+    {
+        return $this->getParameter( 'email' );
+    }
+
+    /**
+     * Set email parameter
+     * @param [type] $email [description]
+     */
+    public function setEmail( $email )
+    {
+        return $this->setParameter( 'email', $email );
+    }
+
+    /**
      * Send purchase request 
      * @param  array  $parameters array of options
      * @return \Omnipay\Mobiuspay\Message\PurchaseRequest
      */
     public function purchase( array $parameters = array() )
-    {
+    { 
       return $this->createRequest('\Omnipay\Mobiuspay\Message\PurchaseRequest', $parameters);
     }
 
